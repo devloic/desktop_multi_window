@@ -30,6 +30,8 @@ class BaseFlutterWindow {
 
   void Center();
 
+  void Focus();
+
  protected:
 
   virtual GtkWindow* GetWindow() = 0;

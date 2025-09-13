@@ -38,6 +38,11 @@ class WindowControllerMainImpl extends WindowController {
   }
 
   @override
+  Future<void> focus() {
+    return _channel.invokeMethod('focus', _id);
+  }
+
+  @override
   Future<void> setFrame(Rect frame) {
     return _channel.invokeMethod('setFrame', <String, dynamic>{
       'windowId': _id,

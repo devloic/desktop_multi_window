@@ -69,6 +69,19 @@ class _ExampleMainWindowState extends State<_ExampleMainWindow> {
                 }
               },
             ),
+            TextButton(
+              child: const Text('Focus all sub windows'),
+              onPressed: () async {
+                final subWindowIds =
+                    await DesktopMultiWindow.getAllSubWindowIds();
+                for (final windowId in subWindowIds) {
+                  final controller = WindowController.fromWindowId(windowId);
+                  await controller.focus();
+                  // Add a small delay between focusing windows
+                  await Future.delayed(const Duration(milliseconds: 500));
+                }
+              },
+            ),
             Expanded(
               child: EventWidget(controller: WindowController.fromWindowId(0)),
             )
@@ -118,6 +131,13 @@ class _ExampleSubWindow extends StatelessWidget {
                 windowController.close();
               },
               child: const Text('Close this window'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final mainWindow = WindowController.fromWindowId(0);
+                await mainWindow.focus();
+              },
+              child: const Text('Focus main window'),
             ),
             Expanded(child: EventWidget(controller: windowController)),
           ],

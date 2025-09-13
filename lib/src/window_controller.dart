@@ -33,6 +33,9 @@ abstract class WindowController {
   /// Center the window on the screen.
   Future<void> center();
 
+  /// Bring the window to the foreground and give it focus.
+  Future<void> focus();
+
   /// Set the window's title.
   Future<void> setTitle(String title);
 

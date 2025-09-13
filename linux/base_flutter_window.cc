@@ -52,3 +52,12 @@ void BaseFlutterWindow::Close() {
   }
   gtk_window_close(GTK_WINDOW(window));
 }
+
+void BaseFlutterWindow::Focus() {
+  auto window = GetWindow();
+  if (!window) {
+    return;
+  }
+  // Present the window (bring to front and focus)
+  gtk_window_present(GTK_WINDOW(window));
+}
